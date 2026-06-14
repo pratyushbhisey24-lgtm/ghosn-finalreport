@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unmasking the Snake — Carlos Ghosn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: #0a0a0a;
+    color: #f0e6c8;
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  /* NAV */
+  nav {
+    background: #0a0a0a;
+    border-bottom: 1px solid #8b1a1a;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 58px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #c9a84c;
+    letter-spacing: 0.04em;
+    padding: 8px 0;
+  }
+  .nav-links { display: flex; gap: 4px; flex-wrap: wrap; padding: 8px 0; }
+  .nav-btn {
+    background: none;
+    border: none;
+    color: #a89060;
+    font-size: 12px;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+    font-family: 'Source Serif 4', serif;
+  }
+  .nav-btn:hover, .nav-btn.active { color: #c9a84c; background: rgba(201,168,76,0.09); }
+
+  .page { display: none; animation: fadein 0.35s ease; }
+  .page.active { display: block; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* HERO */
+  .hero {
+    min-height: 440px;
+    background: linear-gradient(160deg, #1a0000 0%, #0a0a0a 65%);
+    border-bottom: 1px solid #8b1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(139,26,26,0.06) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(139,26,26,0.06) 40px);
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #8b1a1a;
+    margin-bottom: 1.2rem;
+    position: relative;
+    font-weight: 300;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 600;
+    color: #c9a84c;
+    line-height: 1.12;
+    max-width: 660px;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: #a89060;
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+    position: relative;
+    font-style: italic;
+  }
+  .hero-cta {
+    background: #8b1a1a;
+    color: #f0e6c8;
+    border: none;
+    padding: 13px 30px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'Source Serif 4', serif;
+    letter-spacing: 0.04em;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .hero-cta:hover { background: #a82020; }
+
+  .section-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2.5rem 2rem;
+    flex-wrap: wrap;
+  }
+  .section-card {
+    background: #111;
+    border: 1px solid #2a1a0a;
+    border-top: 3px solid #8b1a1a;
+    padding: 1.5rem;
+    width: 155px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    border-radius: 4px;
+  }
+  .section-card:hover { background: #1a0a0a; border-color: #c9a84c; }
+  .section-card .sc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #8b1a1a;
+    display: block;
+  }
+  .section-card .sc-label {
+    font-size: 11px;
+    color: #a89060;
+    margin-top: 6px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+
+  .content { max-width: 780px; margin: 0 auto; padding: 3.5rem 2rem; }
+  .page-header { border-bottom: 1px solid #2a1a0a; padding-bottom: 1.8rem; margin-bottom: 3rem; }
+  .page-tag {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #8b1a1a;
+    margin-bottom: 0.6rem;
+    font-weight: 300;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: #c9a84c;
+    line-height: 1.2;
+  }
+
+  .pullquote {
+    border-left: 3px solid #8b1a1a;
+    padding: 1.2rem 1.8rem;
+    margin: 2.5rem 0;
+    background: #111;
+    border-radius: 0 4px 4px 0;
+  }
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: #d4b870;
+    line-height: 1.6;
+  }
+  .pullquote cite {
+    font-size: 14px;
+    color: #a89060;
+    font-style: normal;
+    display: block;
+    margin-top: 10px;
+    font-weight: 300;
+  }
+
+  .body-text {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #d0c4a8;
+    margin-bottom: 1.6rem;
+  }
+  .body-text strong { color: #c9a84c; font-weight: 600; }
+
+  h2.section-heading {
+    font-family: 'Playfair Display', serif;
+    color: #c9a84c;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 2.5rem 0 1.2rem;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 2.5rem 0; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px; top: 0; bottom: 0;
+    width: 1px;
+    background: #2a1a0a;
+  }
+  .tl-item { display: flex; gap: 1.5rem; margin-bottom: 2.2rem; position: relative; }
+  .tl-dot {
+    width: 42px; height: 42px; min-width: 42px;
+    background: #1a0000;
+    border: 2px solid #8b1a1a;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; color: #c9a84c; z-index: 1;
+  }
+  .tl-content { padding-top: 8px; }
+  .tl-year {
+    font-size: 13px; font-weight: 600; color: #8b1a1a;
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .tl-text { font-size: 16px; color: #a89060; line-height: 1.7; margin-top: 4px; }
+
+  /* THEORY CARDS */
+  .theory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 2.2rem 0;
+  }
+  .theory-card {
+    background: #111;
+    border: 1px solid #2a1a0a;
+    border-top: 2px solid #c9a84c;
+    padding: 1.2rem;
+    border-radius: 4px;
+  }
+  .theory-card .tc-author {
+    font-size: 11px; color: #8b1a1a;
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 7px;
+    font-weight: 300;
+  }
+  .theory-card .tc-concept {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; color: #c9a84c; font-weight: 600; margin-bottom: 7px;
+  }
+  .theory-card .tc-apply { font-size: 14px; color: #a89060; line-height: 1.6; }
+
+  /* TOXIC TRIANGLE */
+  .triangle {
+    background: #111; border: 1px solid #2a1a0a;
+    padding: 1.8rem; border-radius: 4px; margin: 2.2rem 0; text-align: center;
+  }
+  .triangle h3 {
+    font-family: 'Playfair Display', serif;
+    color: #c9a84c; font-size: 17px; font-weight: 600; margin-bottom: 1.8rem;
+  }
+  .tri-row { display: flex; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
+  .tri-box {
+    background: #1a0000; border: 1px solid #8b1a1a;
+    padding: 14px 22px; min-width: 150px; text-align: center; border-radius: 4px;
+  }
+  .tri-box .tb-label {
+    font-size: 11px; color: #8b1a1a;
+    text-transform: uppercase; letter-spacing: 0.09em; font-weight: 300;
+  }
+  .tri-box .tb-val { font-size: 15px; color: #f0e6c8; font-weight: 400; margin-top: 5px; }
+
+  /* RECOMMENDATIONS */
+  .rec-list { list-style: none; margin: 2rem 0; }
+  .rec-item {
+    display: flex; gap: 1.2rem; padding: 1.2rem 0;
+    border-bottom: 1px solid #1a1a1a; align-items: flex-start;
+  }
+  .rec-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 600; color: #8b1a1a; min-width: 30px;
+  }
+  .rec-content .rc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 600; color: #c9a84c; margin-bottom: 5px;
+  }
+  .rec-content .rc-body { font-size: 16px; color: #a89060; line-height: 1.75; }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px; margin: 2.2rem 0;
+  }
+  .stat-box {
+    background: #111; border: 1px solid #2a1a0a;
+    padding: 1.2rem; border-radius: 4px; text-align: center;
+  }
+  .stat-box .sb-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 600; color: #c9a84c;
+  }
+  .stat-box .sb-label {
+    font-size: 12px; color: #8b1a1a;
+    text-transform: uppercase; letter-spacing: 0.09em; margin-top: 5px;
+    font-weight: 300;
+  }
+
+  /* PAGE FOOTER */
+  .page-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2.2rem; margin-top: 2.2rem; border-top: 1px solid #2a1a0a;
+  }
+  .nav-arrow {
+    background: none; border: 1px solid #2a1a0a; color: #a89060;
+    padding: 9px 18px; font-size: 14px; cursor: pointer; border-radius: 4px;
+    font-family: 'Source Serif 4', serif; transition: all 0.2s;
+  }
+  .nav-arrow:hover { border-color: #8b1a1a; color: #c9a84c; }
+
+  /* REFLECTION BOX */
+  .reflection-box {
+    background: #0f0800; border: 1px solid #c9a84c;
+    border-radius: 4px; padding: 1.8rem; margin: 2.2rem 0;
+  }
+  .reflection-box p { font-size: 17px; color: #a89060; line-height: 1.9; }
+
+  /* YOUTUBE THUMBNAIL STYLE — like the reference site */
+  .yt-block { margin: 2.2rem 0; }
+  .yt-thumb-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+    text-decoration: none;
+  }
+  .yt-thumb-wrap img {
+    width: 100%;
+    display: block;
+    transition: opacity 0.2s;
+  }
+  .yt-thumb-wrap:hover img { opacity: 0.85; }
+  .yt-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    pointer-events: none;
+  }
+  .yt-caption {
+    font-size: 14px;
+    color: #5a4a30;
+    margin-top: 10px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* REFERENCES */
+  .ref-list { list-style: none; margin: 1.5rem 0; }
+  .ref-item {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 16px;
+    color: #a89060;
+    line-height: 1.75;
+  }
+  .ref-item a {
+    color: #8b1a1a;
+    text-decoration: underline;
+    word-break: break-all;
+    font-size: 14px;
+    display: block;
+    margin-top: 4px;
+  }
+  .ref-item a:hover { color: #c9a84c; }
+
+  .divider { border: none; border-top: 1px solid #2a1a0a; margin: 2.5rem 0; }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 32px; }
+    .page-title { font-size: 26px; }
+    nav { padding: 0 1rem; }
+    .content { padding: 2rem 1.2rem; }
+    .theory-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Unmasking the Snake</span>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="showPage('home')">Home</button>
+    <button class="nav-btn" onclick="showPage('intro')">Summary</button>
+    <button class="nav-btn" onclick="showPage('leadership')">Unethical Leadership</button>
+    <button class="nav-btn" onclick="showPage('followership')">Problematic Followership</button>
+    <button class="nav-btn" onclick="showPage('recommendations')">Recommendations</button>
+    <button class="nav-btn" onclick="showPage('conclusion')">Conclusion</button>
+    <button class="nav-btn" onclick="showPage('references')">References</button>
+    <button class="nav-btn" onclick="showPage('reflection')">Critical Reflection</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <p class="hero-eyebrow">A Multimodal Critical Report</p>
+    <h1 class="hero-title">Unmasking the Snake and Its Prey</h1>
+    <p class="hero-sub">The Rise, Reign, and Flight of Carlos Ghosn — Toxic Leadership at Nissan-Renault</p>
+    <button class="hero-cta" onclick="showPage('intro')">Begin the Investigation →</button>
+    <p style="position:relative; margin-top: 2rem; font-size: 14px; color: #5a4a30; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300;">By Pratyush Bhisey</p>
+  </div>
+  <div class="section-nav">
+    <div class="section-card" onclick="showPage('intro')"><span class="sc-num">01</span><span class="sc-label">Summary & Intro</span></div>
+    <div class="section-card" onclick="showPage('leadership')"><span class="sc-num">02</span><span class="sc-label">Unethical Leadership</span></div>
+    <div class="section-card" onclick="showPage('followership')"><span class="sc-num">03</span><span class="sc-label">Problematic Followership</span></div>
+    <div class="section-card" onclick="showPage('recommendations')"><span class="sc-num">04</span><span class="sc-label">Recommendations</span></div>
+    <div class="section-card" onclick="showPage('conclusion')"><span class="sc-num">05</span><span class="sc-label">Conclusion</span></div>
+    <div class="section-card" onclick="showPage('references')"><span class="sc-num">06</span><span class="sc-label">References</span></div>
+    <div class="section-card" onclick="showPage('reflection')"><span class="sc-num">07</span><span class="sc-label">Critical Reflection</span></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div id="page-intro" class="page">
+  <div class="content">
+    <div class="page-header">
+      <p class="page-tag">01 — Summary & Introduction</p>
+      <h1 class="page-title">The Man Who Saved Cars — and Betrayed Them</h1>
+    </div>
+    <div class="pullquote">
+      <p>"He was celebrated as a hero. He turned out to be a cautionary tale."</p>
+      <cite>— Financial Times, 2019</cite>
+    </div>
+    <p class="body-text">Carlos Ghosn was, for a long time, the kind of leader business schools wrote case studies about in admiration rather than warning. He arrived at Nissan in 1999 when the company was bleeding money, carrying nearly two trillion yen in debt, and widely expected to collapse. Within two years he had turned it around. Plants were closed, jobs were cut, costs were slashed, and Nissan was profitable again. The business world called him a genius. The Japanese press called him a saviour. His face appeared on the cover of a manga comic book. By 2016 he was simultaneously running Renault, Nissan, and Mitsubishi, overseeing an alliance that produced more than ten million vehicles a year. He was, by almost every conventional measure, one of the most powerful corporate figures on the planet.</p>
+    <p class="body-text">Then in November 2018 he was arrested on the tarmac of Tokyo's Haneda Airport. The charges were serious: years of financial misconduct, undisclosed compensation running into the hundreds of millions, and the systematic abuse of corporate structures across multiple countries. In December 2019 he fled Japan hidden inside a large box loaded onto a private jet, surfacing in Beirut where he remains to this day, beyond the reach of Japanese prosecutors.</p>
+    <p class="body-text">This report investigates what actually happened at Nissan and Renault. Not just the legal charges, but the deeper psychological, cultural, and structural conditions that allowed one man to accumulate so much unchecked power for so long. Using five key theoretical frameworks, it argues that Ghosn's story is not really about one bad person. It is about a system that was almost perfectly designed to produce exactly this outcome.</p>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="sb-num">$140M</div><div class="sb-label">Undisclosed Pay</div></div>
+      <div class="stat-box"><div class="sb-num">19 yrs</div><div class="sb-label">Reign at Nissan</div></div>
+      <div class="stat-box"><div class="sb-num">3</div><div class="sb-label">Companies Controlled</div></div>
+      <div class="stat-box"><div class="sb-num">2018</div><div class="sb-label">Year of Arrest</div></div>
+    </div>
+
+    <h2 class="section-heading">Timeline: The Rise and Fall</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot">99</div><div class="tl-content"><div class="tl-year">1999</div><div class="tl-text">Ghosn arrives at Nissan and engineers the "Nissan Revival Plan" — closing plants, cutting 21,000 jobs, and returning the company to profit within two years.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">05</div><div class="tl-content"><div class="tl-year">2005</div><div class="tl-text">Named CEO of both Nissan and Renault simultaneously. Media dubs him "Le Cost Killer" and "Mr Fix-It" — a near-mythical status emerges.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">16</div><div class="tl-content"><div class="tl-year">2016</div><div class="tl-text">Takes the helm at Mitsubishi, controlling a three-company alliance producing over 10 million vehicles annually. Power becomes entirely unchecked.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">18</div><div class="tl-content"><div class="tl-year">Nov 2018</div><div class="tl-text">Arrested at Haneda Airport on charges of financial misconduct, underreporting compensation by approximately ¥9.1 billion over five years.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">19</div><div class="tl-content"><div class="tl-year">Dec 2019</div><div class="tl-text">Flees Japan hidden in audio equipment and surfaces in Beirut. Remains a fugitive from Japanese justice to this day.</div></div></div>
+    </div>
+
+    <!-- VIDEO 1 -->
+    <div class="yt-block">
+      <a class="yt-thumb-wrap" href="https://www.youtube.com/watch?v=CwGIq7mclNk" target="_blank">
+        <img src="https://img.youtube.com/vi/CwGIq7mclNk/maxresdefault.jpg" alt="Carlos Ghosn: the rise and fall of a superstar CEO | FT Film">
+        <svg class="yt-play-btn" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="36" fill="#FF0000"/>
+          <polygon points="29,22 54,36 29,50" fill="white"/>
+        </svg>
+      </a>
+      <p class="yt-caption">The video documents Carlos Ghosn's dramatic journey from celebrated turnaround CEO to international fugitive, providing essential context for understanding the structural and psychological conditions examined in this report.</p>
+    </div>
+
+    <div class="page-footer">
+      <button class="nav-arrow" onclick="showPage('home')">← Home</button>
+      <button class="nav-arrow" onclick="showPage('leadership')">Unethical Leadership →</button>
+    </div>
+  </div>
+</div>
+
+<!-- UNETHICAL LEADERSHIP -->
+<div id="page-leadership" class="page">
+  <div class="content">
+    <div class="page-header">
+      <p class="page-tag">02 — Unethical Leadership</p>
+      <h1 class="page-title">The Snake in the Boardroom</h1>
+    </div>
+    <div class="pullquote">
+      <p>"Corporate psychopaths are not rare. They simply find that organisations provide an ideal habitat."</p>
+      <cite>— Babiak and Hare, Snakes in Suits</cite>
+    </div>
+    <p class="body-text">The most useful starting point for understanding Ghosn is the work of Paul Babiak and Robert Hare, whose research on corporate psychopathy offers a surprisingly precise description of how he operated. In their framework, corporate psychopaths are not the violent, obviously disturbed figures of popular imagination. They are charming, persuasive, and highly intelligent. They are skilled at reading what people want to hear and telling them exactly that. They construct public personas that inspire loyalty and admiration while privately treating colleagues as instruments to be used and discarded. The modern corporation is, in many ways, an ideal habitat for this personality type, offering status, resources, and just enough structural ambiguity to avoid accountability <strong>(Babiak and Hare, 2018)</strong>.</p>
+    <p class="body-text">Ghosn fits this profile with uncomfortable precision. Former Nissan executives described a workplace culture built on fear and personal loyalty to him rather than to the organisation. Dissent was quietly punished. Performance targets were tied to his personal approval. His public image as the visionary leader who saved Nissan was carefully maintained even as internal governance deteriorated around him.</p>
+    <p class="body-text">Malcolm Harris adds another layer of understanding here. Harris distinguishes between different types of toxic leaders, and Ghosn operated across more than one of them. On one level he was transactionally toxic, using reward and punishment to bind people to him personally rather than to the organisation's actual values. On another level he was transformationally toxic, using the mythology of his own achievements to reframe misconduct as a necessary part of leadership. This dual mode of toxicity is particularly dangerous because it makes the leader appear visionary to outsiders while creating a culture of compliance and fear internally <strong>(Harris, 2023)</strong>. The implicit logic throughout Ghosn's reign was that ordinary rules simply did not apply to someone who had done what he had done.</p>
+    <p class="body-text">Joel Bakan offers a structural explanation that sits alongside the psychological one. His central argument in The Corporation is that the corporate form is legally obligated to pursue profit above all other considerations, making it structurally inclined to externalise human and ethical costs. At Nissan and Renault, the governance structures that concentrated so much authority in Ghosn were not accidents. They were the product of a system that rewarded extraordinary results without asking too many questions about how those results were achieved. The corporation as an institution is not designed to be moral. It is designed to be effective <strong>(Bakan, 2019)</strong>. Ghosn understood this and used it.</p>
+
+    <div class="theory-grid">
+      <div class="theory-card"><div class="tc-author">Babiak and Hare</div><div class="tc-concept">Corporate Psychopathy</div><div class="tc-apply">Ghosn's charm masked a calculated exploitation of colleagues, boards, and shareholders across three continents.</div></div>
+      <div class="theory-card"><div class="tc-author">Malcolm Harris</div><div class="tc-concept">Toxic Leadership Typology</div><div class="tc-apply">His dual transactional-transformational toxicity insulated him from accountability while amplifying follower dependency.</div></div>
+      <div class="theory-card"><div class="tc-author">Padilla, Hogan and Kaiser</div><div class="tc-concept">The Toxic Triangle</div><div class="tc-apply">Ghosn as destructive leader; boards as colluders; cultural hero-worship as the environmental condition enabling it all.</div></div>
+      <div class="theory-card"><div class="tc-author">Joel Bakan</div><div class="tc-concept">The Corporation as Psychopath</div><div class="tc-apply">The alliance's legal mandate to prioritise shareholder return structurally incentivised the very excesses Ghosn exploited.</div></div>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="yt-block">
+      <a class="yt-thumb-wrap" href="https://www.youtube.com/watch?v=tl6T08b-E60" target="_blank">
+        <img src="https://img.youtube.com/vi/tl6T08b-E60/maxresdefault.jpg" alt="Carlos Ghosn: CEO Leadership Traits — Stanford GSB">
+        <svg class="yt-play-btn" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="36" fill="#FF0000"/>
+          <polygon points="29,22 54,36 29,50" fill="white"/>
+        </svg>
+      </a>
+      <p class="yt-caption">In this Stanford Graduate School of Business talk, Ghosn himself discusses what he believes makes a great CEO — a striking illustration of the persona he constructed and the authority he wielded, examined through the lens of Babiak and Hare's corporate psychopathy framework.</p>
+    </div>
+
+    <div class="page-footer">
+      <button class="nav-arrow" onclick="showPage('intro')">← Summary</button>
+      <button class="nav-arrow" onclick="showPage('followership')">Problematic Followership →</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMATIC FOLLOWERSHIP -->
+<div id="page-followership" class="page">
+  <div class="content">
+    <div class="page-header">
+      <p class="page-tag">03 — Problematic Followership</p>
+      <h1 class="page-title">The Prey: Who Let the Snake Thrive?</h1>
+    </div>
+    <div class="pullquote">
+      <p>"Followers are not innocent bystanders. Their complicity — active or passive — is the oxygen that keeps toxic leadership alive."</p>
+      <cite>— Barbara Kellerman, Followership</cite>
+    </div>
+    <p class="body-text">One of the most uncomfortable aspects of the Ghosn case is how many people knew something was wrong and said nothing. Understanding why requires looking carefully at what Barbara Kellerman has written about followership and in particular her typology of different kinds of followers.</p>
+    <p class="body-text">Kellerman argues that followers are not passive recipients of leadership. They are active participants in the dynamic, and their choices, including the choice not to act, have real consequences <strong>(Kellerman, 2008)</strong>. She identifies several types ranging from isolates who are largely disengaged, through bystanders who are aware of problems but do nothing, to activists who actively intervene. The Nissan case is a textbook illustration of what happens when an organisation is populated almost entirely by bystanders. Board members knew that Ghosn's compensation arrangements were unusual. Senior executives were aware that governance structures were being bypassed. Yet for years almost nobody said anything publicly.</p>
+    <p class="body-text">This is where the toxic triangle model becomes essential. Destructive leadership requires three elements working together: a destructive leader, susceptible followers, and a conducive environment. Remove any one of these and the dynamic breaks down <strong>(Padilla, Hogan and Kaiser, 2007)</strong>. At Nissan all three were present simultaneously and reinforcing each other. Susceptible followers are not simply weak or cowardly people. They are often intelligent professionals operating in conditions where the rational choice, given the risks, is to stay silent <strong>(Padilla, Hogan and Kaiser, 2007)</strong>.</p>
+    <p class="body-text">The conducive environment was particularly powerful in this case. Nissan is a Japanese company with deep cultural norms around deference to authority. Ghosn operated across French and Japanese corporate cultures, both of which have strong top-down traditions. The cross-cultural gap meant that the usual informal checks on executive behaviour were even less likely to happen than in a more culturally homogeneous setting. Cultural distance and hero worship are environmental factors that specifically amplify the toxic triangle, and both were present here in abundance <strong>(Padilla, Hogan and Kaiser, 2007)</strong>.</p>
+    <p class="body-text">Bystander followership is not morally neutral. By choosing silence, bystanders actively sustain the conditions that allow destructive leadership to continue <strong>(Kellerman, 2008)</strong>. The board members and senior executives at Nissan were not evil people. They were making individually rational decisions that collectively produced a catastrophic outcome. That is precisely what makes Kellerman's framework so useful here. It shifts attention away from individual villainy and towards the systemic conditions that make bystander behaviour the default.</p>
+
+    <div class="triangle">
+      <h3>Padilla, Hogan and Kaiser — The Toxic Triangle Applied</h3>
+      <div class="tri-row">
+        <div class="tri-box"><div class="tb-label">Destructive Leader</div><div class="tb-val">Carlos Ghosn</div></div>
+      </div>
+      <div class="tri-row">
+        <div class="tri-box"><div class="tb-label">Susceptible Followers</div><div class="tb-val">Board and executives paralysed by deference and fear</div></div>
+        <div class="tri-box"><div class="tb-label">Conducive Environment</div><div class="tb-val">Cross-cultural power gap and myth of the saviour CEO</div></div>
+      </div>
+    </div>
+
+    <!-- VIDEO 3 -->
+    <div class="yt-block">
+      <a class="yt-thumb-wrap" href="https://www.youtube.com/watch?v=m-L2hMB2rYs" target="_blank">
+        <img src="https://img.youtube.com/vi/m-L2hMB2rYs/maxresdefault.jpg" alt="How Ex-Nissan boss Carlos Ghosn escaped Japan in a box — BBC News">
+        <svg class="yt-play-btn" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="36" fill="#FF0000"/>
+          <polygon points="29,22 54,36 29,50" fill="white"/>
+        </svg>
+      </a>
+      <p class="yt-caption">In this BBC exclusive, Ghosn describes the board dynamics and the insider network that enabled his escape — a revealing illustration of how bystander followership, complicit participation, and a conducive organisational environment allowed the toxic triangle to persist unchallenged for years.</p>
+    </div>
+
+    <div class="page-footer">
+      <button class="nav-arrow" onclick="showPage('leadership')">← Unethical Leadership</button>
+      <button class="nav-arrow" onclick="showPage('recommendations')">Recommendations →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDATIONS -->
+<div id="page-recommendations" class="page">
+  <div class="content">
+    <div class="page-header">
+      <p class="page-tag">04 — Recommendations</p>
+      <h1 class="page-title">Breaking the Triangle: How Organisations Can Protect Themselves</h1>
+    </div>
+    <p class="body-text">The Ghosn case is not an anomaly — it is a system failure. The following recommendations are grounded in the theoretical frameworks examined throughout this report and designed to interrupt each side of the toxic triangle.</p>
+    <ul class="rec-list">
+      <li class="rec-item">
+        <div class="rec-num">01</div>
+        <div class="rec-content">
+          <div class="rc-title">Separate the CEO and Chair roles — structurally</div>
+          <div class="rc-body">Ghosn's simultaneous control of three boards made independent oversight impossible. The concentration of authority that Ghosn enjoyed was a structural failure long before it became a personal one, which is exactly the kind of failure that recurs when corporate governance prioritises efficiency over accountability <strong>(Bakan, 2019)</strong>.</div>
+        </div>
+      </li>
+      <li class="rec-item">
+        <div class="rec-num">02</div>
+        <div class="rec-content">
+          <div class="rc-title">Institutionalise psychological screening at the executive level</div>
+          <div class="rc-body">Organisations should build governance structures that do not rely on the virtue of the person at the top <strong>(Babiak and Hare, 2018)</strong>. Anonymous reporting channels, genuinely independent board members, and regular external audits of executive compensation are basic safeguards, not bureaucratic obstacles.</div>
+        </div>
+      </li>
+      <li class="rec-item">
+        <div class="rec-num">03</div>
+        <div class="rec-content">
+          <div class="rc-title">Build a genuinely protected whistleblowing infrastructure</div>
+          <div class="rc-body">Kellerman suggests that organisations need to actively cultivate critical loyalty. Employees and board members should understand that raising legitimate concerns is the highest form of commitment to the organisation's long-term health. This requires explicit protection for whistleblowers and visible examples of concerns being taken seriously rather than punished <strong>(Kellerman, 2008)</strong>.</div>
+        </div>
+      </li>
+      <li class="rec-item">
+        <div class="rec-num">04</div>
+        <div class="rec-content">
+          <div class="rc-title">Cultivate critical followership as a cultural norm</div>
+          <div class="rc-body">Cross-cultural organisations need to be especially alert to the ways in which cultural norms around deference can suppress the informal checks that healthy governance depends on, precisely the environmental conditions that make organisations vulnerable to the toxic triangle in the first place <strong>(Padilla, Hogan and Kaiser, 2007)</strong>.</div>
+        </div>
+      </li>
+    </ul>
+    <div class="page-footer">
+      <button class="nav-arrow" onclick="showPage('followership')">← Problematic Followership</button>
+      <button class="nav-arrow" onclick="showPage('conclusion')">Conclusion →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div id="page-conclusion" class="page">
+  <div class="content">
+    <div class="page-header">
+      <p class="page-tag">05 — Conclusion</p>
+      <h1 class="page-title">After the Escape: What the Ghosn Case Teaches Us</h1>
+    </div>
+    <div class="pullquote">
+      <p>"The most dangerous leaders are not the ones who fail. They are the ones who succeed — until suddenly, catastrophically, they don't."</p>
+    </div>
+    <p class="body-text">Carlos Ghosn did not happen in a vacuum. He happened in a specific set of conditions: a governance structure that concentrated power without accountability, a cultural environment that made challenge almost impossible, a corporate form that prioritised results over ethics, and a cast of followers who, for entirely understandable reasons, chose silence over action. The frameworks applied here each illuminate a different part of the same story: corporate psychopathy <strong>(Babiak and Hare, 2018)</strong>, structural corporate failure <strong>(Bakan, 2019)</strong>, toxic leadership typology <strong>(Harris, 2023)</strong>, followership dynamics <strong>(Kellerman, 2008)</strong>, and the toxic triangle <strong>(Padilla, Hogan and Kaiser, 2007)</strong>. Together they make clear that the Ghosn case was not an aberration. It was a system working exactly as it was designed to, until someone finally decided that the cost was too high.</p>
+    <div class="page-footer">
+      <button class="nav-arrow" onclick="showPage('recommendations')">← Recommendations</button>
+      <button class="nav-arrow" onclick="showPage('references')">References →</button>
+    </div>
+  </div>
+</div>
+
+<!-- REFERENCES -->
+<div id="page-references" class="page">
+  <div class="content">
+    <div class="page-header">
+      <p class="page-tag">06 — References</p>
+      <h1 class="page-title">Sources</h1>
+    </div>
+    <ul class="ref-list">
+      <li class="ref-item">
+        Babiak, P., &amp; Hare, R. D. (2018). <em>Snakes in suits: when psychopaths go to work</em> (Revised edition). HarperBusiness.
+        <a href="http://rbdigital.rbdigital.com" target="_blank">http://rbdigital.rbdigital.com</a>
+      </li>
+      <li class="ref-item">
+        Bakan, J. (2019). <em>The Corporation: The Pathological Pursuit of Profit and Power.</em> Free Press.
+        <a href="https://ebook.yourcloudlibrary.com/library/oclc/detail/wnqnf89" target="_blank">https://ebook.yourcloudlibrary.com/library/oclc/detail/wnqnf89</a>
+      </li>
+      <li class="ref-item">
+        Harris, M. (2023). <em>Palo Alto: a history of California, capitalism, and the world</em> (First edition). Little, Brown and Company.
+        <a href="https://www.overdrive.com/search?q=29307682-240A-4100-97F6-FB0674E83A89" target="_blank">https://www.overdrive.com/search?q=29307682-240A-4100-97F6-FB0674E83A89</a>
+      </li>
+      <li class="ref-item">
+        Kellerman, B. (2008). <em>Followership: how followers are creating change and changing leaders.</em> Harvard Business Press.
+        <a href="https://archive.org/details/followershiphowf0000kell" target="_blank">https://archive.org/details/followershiphowf0000kell</a>
+      </li>
+      <li class="ref-item">
+        Padilla, A., Hogan, R., &amp; Kaiser, R. B. (2007). The toxic triangle: Destructive leaders, susceptible followers, and conducive environments. <em>Leadership Quarterly, 18</em>(3), 176–194.
+        <a href="https://doi.org/10.1016/j.leaqua.2007.03.001" target="_blank">https://doi.org/10.1016/j.leaqua.2007.03.001</a>
+      </li>
+    </ul>
+    <div class="page-footer">
+      <button class="nav-arrow" onclick="showPage('conclusion')">← Conclusion</button>
+      <button class="nav-arrow" onclick="showPage('reflection')">Critical Reflection →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CRITICAL REFLECTION -->
+<div id="page-reflection" class="page">
+  <div class="content">
+    <div class="page-header">
+      <p class="page-tag">07 — Critical Reflection</p>
+      <h1 class="page-title">On Sources, Process, and the Role of AI</h1>
+    </div>
+    <div class="reflection-box">
+      <p>I began this assignment by studying each of the five core sources carefully: Paul Babiak and Robert Hare, Joel Bakan, Malcolm Harris, Barbara Kellerman, and Art Padilla, Robert Hogan and Robert Kaiser. Once I had a solid grasp of the theoretical frameworks, I used AI to generate different design templates for the report, which I reviewed and selected from based on what best suited the tone and content of the case. AI then helped me structure my analysis into a coherent report format and build an HTML file that brought the content to life as a multimodal webpage. The final step of converting that HTML file into a live, submittable webpage via GitHub was something I completed independently. Throughout this process, AI was used purely as a design, formatting, and structural aid. The reading, the theoretical application, and the analytical argument are entirely my own.</p>
+    </div>
+    <div class="page-footer">
+      <button class="nav-arrow" onclick="showPage('references')">← References</button>
+      <button class="nav-arrow" onclick="showPage('home')">Home ↑</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const map = { home:0, intro:1, leadership:2, followership:3, recommendations:4, conclusion:5, references:6, reflection:7 };
+  const btns = document.querySelectorAll('.nav-btn');
+  if (map[id] !== undefined) btns[map[id]].classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
